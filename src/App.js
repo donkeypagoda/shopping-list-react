@@ -26,6 +26,15 @@ class ShoppingList extends React.Component {
     this.setState({list: newList});
   }
 
+  changeName() {
+    let name = document.getElementById("newName").value;
+    document.getElementById("newName").value = "";
+    this.state.name = name;
+    // let nextName = this.state.list.slice();
+    // newList.push(item);
+    this.setState({name: name});
+  }
+
   onClick(index) {
     var newList = this.state.list.slice();
     newList.splice(index, 1);
@@ -40,6 +49,8 @@ class ShoppingList extends React.Component {
     return (
       <div className="shopping-list">
         <h1>Shopping List for {this.props.name}</h1>
+        <input type="text" id="newName" placeholder="Change List Name Here"/>
+        <button type="button" onClick={() => this.changeName()}>Change</button>
         <input type="text" id="listItem" placeholder="Add item"/>
         <button type="button" onClick={() => this.addItem()}>Add</button>
         <ul>
